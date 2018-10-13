@@ -19,32 +19,50 @@
     transform: translateY(-10px);
     opacity: 0;
   }
+
+  .flex-grid {
+    display: flex;
+  }
+  .col {
+    flex: 1;
+  }
+
   </style>
 </head>
 <body>
   <div id="app">
-    <box v-bind="{texts, index}"></box> <h1>change your name to Jeff?</h1>
+    <div class="flex-grid">
+      <div class="col" style="text-align:right">
+    <box v-bind="{texts, index}"></box>
+  </div>
+  <div class="col" style="text-align:center; flex:0">
+    <h1>Change&nbsp;Your&nbsp;Name&nbsp;To&nbsp;Jeff<span style="color:red;">?</span></h1>
+  </div>
+  <div class="col"></div>
+  </div>
   </div>
   <script>
+
   Vue.component('box', {
     props: ['texts', 'index'],
-    template: '<div id="content"><transition name="slide-fade" mode="out-in"><h1 :key="index">{{ text }}</h1></transition></div>',
+    template: '<div id="content"><transition name="slide-fade" mode="out-in"><h1 :key="index" style="color:red;">{{ text }}&nbsp;</h1></transition></div>',
     computed: {
       text: function() {
         return this.texts[this.index];
       }
-}
-});
+    }
+  });
+
 let app = new Vue({
 el: '#app',
 data: {
   index: 0,
   texts: [
-    'Should you',
-    'Will you',
-    'Can you',
-    'How do you',
-    'Would you'
+    'Should You',
+    'Will You',
+    'Can You',
+    'How Do You',
+    'Would You'
   ]
 }
 });
