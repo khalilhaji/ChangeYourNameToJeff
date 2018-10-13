@@ -45,6 +45,5 @@ def process_pdfs(request):
         populate_fields('/tmp/input.pdf', '/tmp/output.pdf', form_values)
         output_name = str(uuid.uuid4())+'.pdf'
         storage_client.get_bucket('cyn-outputs').blob(output_name).upload_from_filename('/tmp/output.pdf')
-        #storage_client.get_bucket('cyn-outputs').blob(output_name).upload_from_filename('/tmp/input.pdf')
         return bucket_url+output_name
         
