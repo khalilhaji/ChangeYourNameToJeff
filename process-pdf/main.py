@@ -37,7 +37,7 @@ def populate_fields(input_pdf_path, output_pdf_path, data_dict):
 def process_pdfs(request):
     content_type = request.headers['content-type']
     if content_type == 'application/json':
-        data = request.json()
+        data = request.json
         template = data['template'] 
         form_values = data['form_values']
         
