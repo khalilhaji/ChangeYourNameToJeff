@@ -282,7 +282,7 @@
               primary_phone: this.primary_phone,
               email_address: this.email_address,
               prior_name_no: this.prior_name_no ? "X" : "",
-              return_documents_yes: this.return_documents_yes,
+              return_documents_yes: this.return_documents_yes ? "X" : "",
               first_name_jeff: "Jeff",
               reason: this.reason,
               current_name_full: this.current_name_first + " " + this.current_name_middle + " " + this.current_name_last,
