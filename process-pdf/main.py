@@ -46,11 +46,3 @@ def process_pdfs(request):
         output_name = str(uuid.uuid4())+'.pdf'
         storage_client.get_bucket('cyn-outputs').blob(output_name).upload_from_filename('/tmp/output.pdf')
         return bucket_url+output_name
-
-
-@app.after_request
-def after_request(response):
-  response.headers.add('Access-Control-Allow-Origin', '*')
-  response.headers.add('Access-Control-Allow-Headers', 'Content-Type,Authorization')
-  response.headers.add('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS')
-  return response
