@@ -6,6 +6,8 @@ import os
 import pdfrw
 import re
 import uuid
+import json
+import flask
 
 ANNOT_KEY = '/Annots'
 ANNOT_FIELD_KEY = '/T'
@@ -45,4 +47,9 @@ def process_pdfs(request):
         populate_fields('/tmp/input.pdf', '/tmp/output.pdf', form_values)
         output_name = str(uuid.uuid4())+'.pdf'
         storage_client.get_bucket('cyn-outputs').blob(output_name).upload_from_filename('/tmp/output.pdf')
-        return bucket_url+output_name
+        response = {}
+        response['bucket_url'] = bucket_url+output_name
+        response = flask.jsonify(response)
+        response.headers.set('Access-Control-Allow-Origin', '*')
+        response.headers.set('Access-Control-Allow-Methods', 'GET, POST')
+        return response
