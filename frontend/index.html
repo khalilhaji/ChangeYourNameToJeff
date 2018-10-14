@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Change Your Name To Jeff</title>
+  <link href="https://fonts.googleapis.com/css?family=Raleway:800" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+  <style>
+  .slide-fade-enter-active {
+    transition: all 1s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+  }
+  .slide-fade-leave-active {
+    transition: all 1s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+  }
+  .slide-fade-enter
+  /* .slide-fade-leave-active below version 2.1.8 */ {
+    transform: translateY(1000px);
+    opacity: 0;
+  }
+  .slide-fade-leave-to {
+    transform: translateY(-100px);
+    opacity: 0;
+  }
+
+  body {
+    overflow: hidden;
+  }
+
+  .flex-grid {
+    display: flex;
+    align-items: center;
+  }
+  .col {
+    flex: 1;
+    /* border-style: solid; */
+  }
+
+  .title {
+    font-family: 'Raleway', sans-serif;
+    font-weight: 800;
+    font-size: 5em;
+  }
+
+  .prefix {
+    color:red;
+    font-family: 'Source Code Pro', monospace;
+    font-size: 3em;
+  }
+
+  </style>
+</head>
+<body>
+  <div id="app">
+    <div class="flex-grid">
+      <div class="col" style="text-align:right">
+    <box v-bind="{texts, index}"></box>
+  </div>
+  <div class="col" style="text-align:center; flex:0">
+    <h1 class="title">Change&nbsp;Your&nbsp;Name&nbsp;To&nbsp;Jeff</h1>
+  </div>
+  <div class="col"></div>
+</div>
+  </div>
+  <script>
+
+  Vue.component('box', {
+    props: ['texts', 'index'],
+    template: '<div id="content"><transition name="slide-fade" mode="out-in"><h1 :key="index" class="prefix">{{ text }}&nbsp;</h1></transition></div>',
+    computed: {
+      text: function() {
+        return this.texts[this.index];
+      }
+    }
+  });
+
+let app = new Vue({
+el: '#app',
+data: {
+  index: -2,
+  texts: [
+    'Should You',
+    'Will You',
+    'Can You',
+    'How Do You',
+    'Would You'
+  ]
+}
+});
+
+  setInterval(() => {
+    app.index++;
+    if (app.index >= app.texts.length)
+      app.index = 0;
+    }, 1000);
+  </script>
+</body>
+</html>
