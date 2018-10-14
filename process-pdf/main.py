@@ -47,9 +47,6 @@ def process_pdfs(request):
         populate_fields('/tmp/input.pdf', '/tmp/output.pdf', form_values)
         output_name = str(uuid.uuid4())+'.pdf'
         storage_client.get_bucket('cyn-outputs').blob(output_name).upload_from_filename('/tmp/output.pdf')
-        response = {}
-        response['bucket_url'] = bucket_url+output_name
-        response = flask.jsonify(response)
-        response.headers.set('Access-Control-Allow-Origin', 'https://changemynametojeff.firebaseapp.com')
-        response.headers.set('Access-Control-Allow-Methods', 'GET, POST')
-        return response
+        resp = flask.make_response(bucket_url+output_name)
+        resp.headers['Access-Control-Allow-Origin'] = "*.firebaseapp.com"
+        return resp
