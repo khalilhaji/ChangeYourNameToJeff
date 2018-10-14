@@ -50,6 +50,6 @@ def process_pdfs(request):
         response = {}
         response['bucket_url'] = bucket_url+output_name
         response = flask.jsonify(response)
-        response.headers.set('Access-Control-Allow-Origin', '*')
+        response.headers.set('Access-Control-Allow-Origin', 'http://localhost:8080')
         response.headers.set('Access-Control-Allow-Methods', 'GET, POST')
         return response
